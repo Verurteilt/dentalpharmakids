@@ -109,7 +109,7 @@ def obtener_cuadros_generales_subfarmacos(request):
 		farmaco = Farmaco.objects.get(clave=request.GET['farmaco_clave'])
 		farmacos_cuadros = FarmacoCuadro.objects.filter(farmaco=farmaco, habilitado=True)
 		imagenes_farmacos_cuadros = [m.imagen for m in farmacos_cuadros]
-		subfarmacos = SubFarmaco.objects.filter(habilitado=True, farmaco=farmaco)
+		subfarmacos = SubFarmaco.objects.filter(habilitado=True, farmaco=farmaco).order_by('nombre')
 		subfarmacos_lista = [o.nombre + "|"+ str(o.id) for o in subfarmacos]
 		return return_json_response(False, [imagenes_farmacos_cuadros, subfarmacos_lista])
 	except Exception as e:
