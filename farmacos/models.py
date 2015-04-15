@@ -16,7 +16,7 @@ class Farmaco(models.Model):
 
 class FarmacoCuadro(models.Model):
 	farmaco = models.ForeignKey(Farmaco)
-	imagen = models.ImageField(upload_to='farmacos')
+	imagen = models.URLField()
 	#descripcion = models.CharField(max_length=100)
 	habilitado = models.BooleanField(default=True)
 
