@@ -107,7 +107,7 @@ def ya_pago(user):
 def obtener_cuadros_generales_subfarmacos(request):
 	try:
 		farmaco = Farmaco.objects.get(clave=request.GET['farmaco_clave'])
-		farmacos_cuadros = FarmacoCuadro.objects.filter(farmaco=farmaco, habilitado=True)
+		farmacos_cuadros = FarmacoCuadro.objects.filter(farmaco=farmaco, habilitado=True).order_by('id')
 		imagenes_farmacos_cuadros = [m.imagen for m in farmacos_cuadros]
 		subfarmacos = SubFarmaco.objects.filter(habilitado=True, farmaco=farmaco).order_by('nombre')
 		subfarmacos_lista = [o.nombre + "|"+ str(o.id) for o in subfarmacos]
